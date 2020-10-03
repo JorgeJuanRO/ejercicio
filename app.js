@@ -4,6 +4,7 @@ const express = require('express');
 const app = express();
 const port = 3000;
 
+
 // Static Files - Para cargar imagenes o estilos css
 app.use(express.static('public'));
 app.use('/css',express.static(__dirname+ 'public/css'));
@@ -45,7 +46,7 @@ app.get('/salary', (req,res) => {
         let indexOfMax = 0;
         let salary = 0;
         let media = 0;
-        let police = 0;
+        let Puestos_cantidad = 0;
         // Bucle for para buscar y guardar las variables del array
         for (var i = 0; i < data.data.length; i++) {
             salary = salary + Number(data.data[i][18]);
@@ -59,18 +60,21 @@ app.get('/salary', (req,res) => {
         }
         // buscar puestos de trabajo similares
         let puestos = [''];
+        let nombres_posiciones =[''];
+        let indexOfMax_posiciones = [''];
         let a=0;
         for (var x = 0; x < data.data.length; x++) {
             if (String(data.data[x][9]) == posicion) {
+                nombres_posiciones[a] = String(data.data[x][8]);
                 puestos[a]= Number(data.data[x][18]);
-                police++;    
+                indexOfMax_posiciones[x]=indexOfMax = i+1;
+                Puestos_cantidad++;    
                 a++;
-                console.log(a);
+               //console.log(a);
             }
         }
         
-        // Enviar datos al navegador web (etiquetas html)
-        res.render('salary', {text0: maxSalary,text1: indexOfMax,text2: data.data.length,text3: nombre,text4: posicion,text5: media, text6: puestos});
+
 
 
 
@@ -81,36 +85,43 @@ app.get('/salary', (req,res) => {
         console.log('Nombre:', nombre);
         console.log('Posicion:', posicion);
         console.log('Salario:', salary, media);  
-        console.log(police);
-        console.log(puestos);
+        console.log(Puestos_cantidad);
+        console.log(nombres_posiciones);
 
         //salarios mas altos
         //buscar los 10 salarios más altos
-var array_salarios = puestos;
-var array_salarios_nuevo =[];
-var mayor_salario = 0;
-var array_salarios_index =0;
+        var array_salarios = puestos;
+        var array_salarios_nuevo =[];
+        var mayor_salario = 0;
+        var array_salarios_index =0;
 
-// repite la operacion 3 veces para buscar los 3 mayor_salarioes.
-for(x=0;x <10;x++){
-    //console.log("for externo",x, array_salarios);
-    //busca el numero mayor_salario del array
-    for(i = 0; i < array_salarios.length; i++){
-        //console.log("for interno",i, array_salarios);
-        if (array_salarios[i] > mayor_salario)
-        {
-            mayor_salario = array_salarios[i];
-            array_salarios_index = [i];              
+        // repite la operacion 3 veces para buscar los 3 mayor_salarioes.
+        for(x=0;x <10;x++){ //Puestos_cantidad para ponertodos los registros
+            //console.log("for externo",x, array_salarios);
+            //busca el numero mayor_salario del array
+            for(i = 0; i < array_salarios.length; i++){
+                //console.log("for interno",i, array_salarios);
+                if (array_salarios[i] > mayor_salario)
+                {
+                    mayor_salario = array_salarios[i];
+                    array_salarios_index = [i];              
+                }
+                //console.log(array_salarios_index);
+            }
+            delete array_salarios[array_salarios_index]; // funciona bien solo para el primer bucle for.
+            array_salarios_nuevo[x] = mayor_salario;
+            array_salarios_index =0;
+            mayor_salario=0;
         }
-        //console.log(array_salarios_index);
-    }
-    delete array_salarios[array_salarios_index]; // funciona bien solo para el primer bucle for.
-    array_salarios_nuevo[x] = mayor_salario;
-    array_salarios_index =0;
-    mayor_salario=0;
-}
-console.log("mayor_salario",mayor_salario);
-console.log(array_salarios_nuevo);
+        console.log("mayor_salario",mayor_salario);
+        console.log(array_salarios_nuevo);
+
+        // Enviar datos al navegador web (etiquetas html)
+        var friends = array_salarios_nuevo;
+        res.render('salary', {text0: maxSalary,text1: indexOfMax,text2: data.data.length,text3: nombre,text4: posicion,text5: media, friends:friends, nombres_posiciones:nombres_posiciones,
+            indexOfMax_posiciones:indexOfMax_posiciones,
+            Puestos_cantidad:Puestos_cantidad});
+
 }
 
 

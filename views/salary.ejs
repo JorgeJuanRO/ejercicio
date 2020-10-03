@@ -38,7 +38,43 @@
     </body>
 
 <body>
-  <input type="button" class="button" value="Genera una tabla" onclick="genera_tabla()">
+  <h4> Existen <%= Puestos_cantidad %> puestos similares a este. A continuación se ordenan de mayor a menor los 10 salarios más altos del mismo puesto laboral. </h4>
+  <table id="customers">
+      <tr>
+        <th>Salario</th>
+      </tr>         
+          <% friends.forEach(function(friend) { %>
+            <li>     
+               <tr>
+              <td>
+              <%= friend  %> $
+            </li>       
+           </td>
+          </tr> 
+          <% }); %>
+    </table>
+</body>
+
+<body>
+  <h4> Resultado de salario más alto de la muestra:</h4>
+  <table id="customers">
+      <tr>
+        <th>Id</th>
+        <th>Nombre</th>
+        <th>Salario</th>
+      </tr>         
+          <% nombres_posiciones.forEach(function(nombres_posiciones) { %>
+            <li>     
+              <tr>
+                <td>Id_position</td>
+                <td>
+                  <%= nombres_posiciones  %> $
+                </td>  
+                <td>Id_Salario</td>
+              </tr> 
+            </li>
+          <% }); %>
+    </table>
 </body>
 
 </html>
