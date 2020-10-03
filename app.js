@@ -46,12 +46,12 @@ app.get('/salary', (req,res) => {
         let media = 0;
         // Bucle for para buscar y guardar las variables del array
         for (var i = 0; i < data.data.length; i++) {
-            salary = salary + Number(data.data[i][11]);
-            if (Number(data.data[i][11]) > maxSalary) {
-                maxSalary = Number(data.data[i][11]);
+            salary = salary + Number(data.data[i][18]);
+            if (Number(data.data[i][18]) > maxSalary) {
+                maxSalary = Number(data.data[i][18]);
                 nombre = String(data.data[i][8]);    
                 posicion = String(data.data[i][9]);  
-                indexOfMax = i;
+                indexOfMax = i+1;
             }
             media = salary / data.data.length; // Calcular la media de todos los salarios del documento.
         }
