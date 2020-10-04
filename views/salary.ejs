@@ -15,8 +15,7 @@
               <td><%= text2 %></td>
               <td><%= text5 %></td>
             </tr>  
-          </table>
-          
+          </table>     
     </body>
 
     <body>
@@ -35,28 +34,38 @@
               <td><%= text0 %> $</td>
               </tr>  
           </table>
+          <h4> Cantidad de puestos laborales con la misma posición laboral</h4>
+          <!-- Tabla del número de trabajadores con el mismo puesto y el gasto que representan sobre el total-->
+          <table id="customers">
+              <tr>
+                <th>Posiciones similares</th>
+                <th>Porcentaje de gasto en salario sobre el total para esta posición</th>
+              </tr>
+              <tr>
+                <td><%= Puestos_cantidad %></td>
+                <td><%= porcentaje_salario_posicion %> %</td>
+              </tr>  
+            </table>
+            <!-- Tabla de salarios ordenadores de mayor a menor de la posición del salario más alto-->
+            <h4> Existen <%= Puestos_cantidad %> puestos similares a este. A continuación se ordenan de mayor a menor los 10 salarios más altos del mismo puesto laboral. </h4>
+            <table id="customers">
+                <tr>
+                  <th>Salario</th>
+                </tr>         
+                    <% friends.forEach(function(friend) { %>
+                      <li>     
+                         <tr>
+                        <td>
+                        <%= friend  %> $
+                      </li>       
+                     </td>
+                    </tr> 
+                    <% }); %>
+              </table>
     </body>
 
 <body>
-  <h4> Existen <%= Puestos_cantidad %> puestos similares a este. A continuación se ordenan de mayor a menor los 10 salarios más altos del mismo puesto laboral. </h4>
-  <table id="customers">
-      <tr>
-        <th>Salario</th>
-      </tr>         
-          <% friends.forEach(function(friend) { %>
-            <li>     
-               <tr>
-              <td>
-              <%= friend  %> $
-            </li>       
-           </td>
-          </tr> 
-          <% }); %>
-    </table>
-</body>
 
-<body>
-  <h4> Resultado de salario más alto de la muestra:</h4>
   <table id="customers">
       <tr>
         <th>Id</th>
