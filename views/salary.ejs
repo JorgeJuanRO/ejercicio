@@ -72,14 +72,14 @@
         <th>Nombre</th>
         <th>Salario</th>
       </tr>         
-          <% nombres_posiciones.forEach(function(nombres_posiciones) { %>
+          <% array_datos_ejs.forEach(function(array_datos_ejs) { %>
             <li>     
               <tr>
-                <td>Id_position</td>
+                <td><%= array_datos_ejs.array_id %></td>
                 <td>
-                  <%= nombres_posiciones  %> $
+                  <%= array_datos_ejs.array_nombre %> $
                 </td>  
-                <td>Id_Salario</td>
+                <td><%= array_datos_ejs.array_salario %> $</td>
               </tr> 
             </li>
           <% }); %>

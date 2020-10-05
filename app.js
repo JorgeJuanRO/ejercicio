@@ -62,6 +62,7 @@ app.get('/salary', (req,res) => {
             media = salary / data.data.length; // Calcular la media de todos los salarios del documento.
         }
         // buscar puestos de trabajo similares al del salario máximo
+        var array_datos_ejs = [];
         let puestos = [''];
         let nombres_posiciones =[''];
         let indexOfMax_posiciones = [''];
@@ -75,8 +76,12 @@ app.get('/salary', (req,res) => {
                 indexOfMax_posiciones[x]=indexOfMax = i+1;
                 Puestos_cantidad++;    
                 a++;
+                array_datos_ejs.push({ array_id:(data.data[x][0])-1, array_nombre:(data.data[x][8]), array_salario:(data.data[x][18]) });
             }
         }
+
+        // Crear array objeto
+        console.log(array_datos_ejs);
 
         // calcular el porcentaje de gasto en salarios para el puesto de trabajo del salario mas alto
         let porcentaje_salario_posicion = salary_puestos*100/salary.toFixed(2);
@@ -134,7 +139,8 @@ app.get('/salary', (req,res) => {
             nombres_posiciones:nombres_posiciones,
             indexOfMax_posiciones:indexOfMax_posiciones,
             Puestos_cantidad:Puestos_cantidad,
-            porcentaje_salario_posicion:porcentaje_salario_posicion.toFixed(2)
+            porcentaje_salario_posicion:porcentaje_salario_posicion.toFixed(2),
+            array_datos_ejs:array_datos_ejs
         });
 
 }
