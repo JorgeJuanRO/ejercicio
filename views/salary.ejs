@@ -3,7 +3,7 @@
     <head>
         <link rel='stylesheet' href='css/main.css'>
     </head>
-
+<!--PRIMERA TABLA DE DATOS CON LA MUESTRA TOTAL Y EL SALARIO MEDIO-->
     <body>
         <h4> Total de la muestra analizada y salario medio</h4>
         <table id="customers">
@@ -17,7 +17,7 @@
             </tr>  
           </table>     
     </body>
-
+<!--SEGUNDA TABLA DE DATOS CON EL ELEMENTO QUE TIENE EL SALARIO MÁS ALTO DEL DOCUMENTO JSON-->
     <body>
         <h4> Resultado de salario más alto de la muestra:</h4>
         <table id="customers">
@@ -35,7 +35,7 @@
               </tr>  
           </table>
           <h4> Cantidad de puestos laborales con la misma posición laboral</h4>
-          <!-- Tabla del número de trabajadores con el mismo puesto y el gasto que representan sobre el total-->
+          <!-- TABLA DEL NÚMERO DE PERSONAS CON EL MISMO PUESTO Y EL GASTO $ QUE REPRESENTAN SOBRE EL TOTAL-->
           <table id="customers">
               <tr>
                 <th>Posiciones similares</th>
@@ -46,12 +46,11 @@
                 <td><%= porcentaje_salario_posicion %> %</td>
               </tr>  
             </table>
-            <!-- Tabla de salarios ordenadores de mayor a menor de la posición del salario más alto-->
             <h4> Existen <%= Puestos_cantidad %> puestos similares a este. A continuación se muestran el resto de personas del mismo puesto laboral. </h4>
     </body>
 
 <body>
-<!-- TABLA ORDENADA DE PUESTOS SIMILARES AL MÁXIMO SALARIO-->
+<!-- TABLA ORDENADA DE PUESTOS SIMILARES A LA PERSONA CON EL MÁXIMO SALARIO DEL DOCUMENTO-->
     <table id="customers">
       <tr>
         <th>Posición Salarial</th>
