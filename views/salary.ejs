@@ -47,41 +47,26 @@
               </tr>  
             </table>
             <!-- Tabla de salarios ordenadores de mayor a menor de la posición del salario más alto-->
-            <h4> Existen <%= Puestos_cantidad %> puestos similares a este. A continuación se ordenan de mayor a menor los 10 salarios más altos del mismo puesto laboral. </h4>
-            <table id="customers">
-                <tr>
-                  <th>Salario</th>
-                </tr>         
-                    <% friends.forEach(function(friend) { %>
-                      <li>     
-                         <tr>
-                        <td>
-                        <%= friend  %> $
-                      </li>       
-                     </td>
-                    </tr> 
-                    <% }); %>
-              </table>
+            <h4> Existen <%= Puestos_cantidad %> puestos similares a este. A continuación se muestran el resto de personas del mismo puesto laboral. </h4>
     </body>
 
 <body>
-
   <table id="customers">
       <tr>
         <th>Id</th>
         <th>Nombre</th>
-        <th>Salario</th>
+        <th>Posición laboral</th>
+        <th>Salario base</th>
+        <th>Salario base+complementos</th>
       </tr>         
-          <% array_datos_ejs.forEach(function(array_datos_ejs) { %>
-            <li>     
+        <% array_datos_ejs.forEach(function(array_datos_ejs) { %>
               <tr>
                 <td><%= array_datos_ejs.array_id %></td>
-                <td>
-                  <%= array_datos_ejs.array_nombre %> $
-                </td>  
+                <td><%= array_datos_ejs.array_nombre %> $</td>  
+                <td><%= array_datos_ejs.array_puesto %></td>
+                <td><%= array_datos_ejs.array_salario_base %> $</td>
                 <td><%= array_datos_ejs.array_salario %> $</td>
               </tr> 
-            </li>
           <% }); %>
     </table>
 </body>

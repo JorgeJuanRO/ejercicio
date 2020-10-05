@@ -76,7 +76,13 @@ app.get('/salary', (req,res) => {
                 indexOfMax_posiciones[x]=indexOfMax = i+1;
                 Puestos_cantidad++;    
                 a++;
-                array_datos_ejs.push({ array_id:(data.data[x][0])-1, array_nombre:(data.data[x][8]), array_salario:(data.data[x][18]) });
+                array_datos_ejs.push({
+                    array_id:(data.data[x][0])-1,
+                    array_nombre:(data.data[x][8]),
+                    array_puesto:(data.data[x][9]),
+                    array_salario_base:(data.data[x][11]),
+                    array_salario:(data.data[x][18])
+                });
             }
         }
 
