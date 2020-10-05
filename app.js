@@ -1,4 +1,4 @@
-const { json } = require('express');
+//const { json } = require('express');
 // imports
 const express = require('express');
 const app = express();
@@ -78,7 +78,9 @@ app.get('/salary', (req,res) => {
                 indexOfMax_posiciones[x]=indexOfMax = i+1;
                 Puestos_cantidad++;    
                 a++;
+                // array con objetos para mandar EJS tabla.
                 array_datos_ejs.push({
+                    array_key:a,
                     array_id:(data.data[x][0])-1,
                     array_nombre:(data.data[x][8]),
                     array_puesto:(data.data[x][9]),
@@ -87,14 +89,60 @@ app.get('/salary', (req,res) => {
                 });
             }
         }
+        
+        //ORDENA EL ARRAY DE DATOS DE MAYOR A MENOR
+        var array_datos_ejs_ordenado = (array_datos_ejs.sort(function(prev, next){ return next.array_salario - prev.array_salario; }));
+        for(i = 0; i < array_datos_ejs_ordenado.length; i++){
+            array_datos_ejs_ordenado[i].array_key = i+1;
+          }
 
+        // ordenar los salarios más altos de los puestos de trabajo similares
+        // repite la operacion x veces para buscar los x mayor_salarioes.
+        //buscar los 10 salarios más altos
+        /*
+        var array_datos_ejs_copia = [];
+        var array_salario = puestos;
+        var array_salarios_nuevo1 =[];
+        var mayor_salario1 = 0;
+        var array_salario_index =0;
+        for(x=0;x <array_datos_ejs.length;x++){ //Puestos_cantidad para poner todos los registros que tienen el mismo puesto de trabajo.
+            //console.log("for externo",x, array_salarios);
+            //busca el numero mayor_salario del array
+            
+            for(i = 0; i < array_salario.length; i++){
+                //console.log("for interno",i, array_salarios);
+                if (array_salario[i] > mayor_salario1)
+              // if (array_datos_ejs.array_salario[i] > array_salario1)
+                {
+                    mayor_salario1 = array_datos_ejs.array_salario[i];
+                    array_salario_index = [i];
+                    //
+                    // array con objetos para mandar EJS tabla.
+                    array_datos_ejs_copia.push({
+                        array_id:(array_datos_ejs[i].array_id),
+                        array_nombre:array_datos_ejs[i].array_nombre,
+                        array_puesto:array_datos_ejs[i].array_puesto,
+                        array_salario_base:array_datos_ejs[i].array_salario_base,
+                        array_salario:array_datos_ejs[i].array_salario
+                }); 
+                }
+            }
+            delete array_salario[array_salario_index]; // si borramos el registro más alto y repetimos el proceso obtenemos el siguiente valor más alto. lo almacenamos en un array y continuamos.
+            array_salarios_nuevo1[x] = mayor_salario1;
+            array_salario_index =0;
+            mayor_salario1=0;
+        }
+*/
         // Crear array objeto
-        console.log(array_datos_ejs);
+        //console.log(array_datos_ejs.array_salario[1]);
+        //console.log(array_datos_ejs);
+        //console.log(array_datos_ejs_copia);
 
         // calcular el porcentaje de gasto en salarios para el puesto de trabajo del salario mas alto
         let porcentaje_salario_posicion = salary_puestos*100/salary.toFixed(2);
 
         // Enviar datos a la consola
+        /*
         console.log('Maximum Salary Found:',maxSalary,indexOfMax); 
         console.log('Máximo salario encontrado:', maxSalary, 'Número:', indexOfMax, 'Muestra total:', data.data.length);
         console.log('Nombre:', nombre);
@@ -105,7 +153,7 @@ app.get('/salary', (req,res) => {
         console.log(salary_puestos);
         console.log(salary.toFixed(2));
         console.log('Porcentaje de salario respecto al total para:',posicion,'es de:',porcentaje_salario_posicion.toFixed(2));
-
+        */
         //salarios mas altos
         //buscar los 10 salarios más altos
         var array_salarios = puestos;
@@ -114,7 +162,7 @@ app.get('/salary', (req,res) => {
         var array_salarios_index =0;
 
         // repite la operacion x veces para buscar los x mayor_salarioes.
-        for(x=0;x <10;x++){ //Puestos_cantidad para poner todos los registros que tienen el mismo puesto de trabajo.
+        for(x=0;x <Puestos_cantidad;x++){ //Puestos_cantidad para poner todos los registros que tienen el mismo puesto de trabajo.
             //console.log("for externo",x, array_salarios);
             //busca el numero mayor_salario del array
             for(i = 0; i < array_salarios.length; i++){
@@ -131,8 +179,8 @@ app.get('/salary', (req,res) => {
             array_salarios_index =0;
             mayor_salario=0;
         }
-        console.log("mayor_salario",mayor_salario);
-        console.log(array_salarios_nuevo);
+        //console.log("mayor_salario",mayor_salario);
+        //console.log(array_salarios_nuevo);
 
         // Enviar datos al navegador web (etiquetas html -> .ejs)
         var friends = array_salarios_nuevo;
@@ -148,7 +196,8 @@ app.get('/salary', (req,res) => {
             indexOfMax_posiciones:indexOfMax_posiciones,
             Puestos_cantidad:Puestos_cantidad,
             porcentaje_salario_posicion:porcentaje_salario_posicion.toFixed(2),
-            array_datos_ejs:array_datos_ejs
+            array_datos_ejs:array_datos_ejs,
+            array_datos_ejs_ordenado:array_datos_ejs_ordenado
         });
 
 }

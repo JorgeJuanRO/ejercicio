@@ -51,21 +51,24 @@
     </body>
 
 <body>
-  <table id="customers">
+<!-- TABLA ORDENADA DE PUESTOS SIMILARES AL MÁXIMO SALARIO-->
+    <table id="customers">
       <tr>
+        <th>Posición Salarial</th>
         <th>Id</th>
         <th>Nombre</th>
         <th>Posición laboral</th>
         <th>Salario base</th>
         <th>Salario base+complementos</th>
       </tr>         
-        <% array_datos_ejs.forEach(function(array_datos_ejs) { %>
+        <% array_datos_ejs_ordenado.forEach(function(array_datos_ejs_ordenado) { %>
               <tr>
-                <td><%= array_datos_ejs.array_id %></td>
-                <td><%= array_datos_ejs.array_nombre %> $</td>  
-                <td><%= array_datos_ejs.array_puesto %></td>
-                <td><%= array_datos_ejs.array_salario_base %> $</td>
-                <td><%= array_datos_ejs.array_salario %> $</td>
+                <td><%= array_datos_ejs_ordenado.array_key %></td>
+                <td><%= array_datos_ejs_ordenado.array_id %></td>
+                <td><%= array_datos_ejs_ordenado.array_nombre %> $</td>  
+                <td><%= array_datos_ejs_ordenado.array_puesto %></td>
+                <td><%= array_datos_ejs_ordenado.array_salario_base %> $</td>
+                <td><%= array_datos_ejs_ordenado.array_salario %> $</td>
               </tr> 
           <% }); %>
     </table>
