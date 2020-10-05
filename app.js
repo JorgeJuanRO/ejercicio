@@ -47,6 +47,7 @@ app.get('/salary', (req,res) => {
         let posicion = "";
         let maxSalary = 0;
         let indexOfMax = 0;
+        let indexOfMax1 = 0;
         let salary = 0;
         let media = 0;
         let Puestos_cantidad = 0;
@@ -58,6 +59,7 @@ app.get('/salary', (req,res) => {
                 nombre = String(data.data[i][8]);    
                 posicion = String(data.data[i][9]);  
                 indexOfMax = i+1;
+                indexOfMax1 = i+1;
             }
             media = salary / data.data.length; // Calcular la media de todos los salarios del documento.
         }
@@ -136,7 +138,7 @@ app.get('/salary', (req,res) => {
         var friends = array_salarios_nuevo;
         res.render('salary', {
             text0: maxSalary,
-            text1: indexOfMax,
+            text1: indexOfMax1,
             text2: data.data.length,
             text3: nombre,
             text4: posicion,
