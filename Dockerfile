@@ -15,6 +15,7 @@ COPY package*.json ./
 RUN npm install
 
 #cambio
+
 COPY . .
 
 #Para poder interactiar con la web deberá exponer un puerto, en este caso 8080
