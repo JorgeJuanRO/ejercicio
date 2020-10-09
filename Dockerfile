@@ -9,9 +9,6 @@ WORKDIR /usr/src/app
 #A continuación, copiará de nuevo todo lo que hay en la carpeta actual (ese será el código de JS).
 
 COPY package*.json ./
-#ADD . .
-
-#COPY . .
 
 #Entonces, se ejecutará "npm install" para obtener todos los módulos del nodo e incluirlos en la imagen (cargada previamente)
 
